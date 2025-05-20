@@ -1,0 +1,54 @@
+services:
+  web:
+    image: php:5.6-apache
+    container_name: openclinic-web
+    volumes:
+      - ./:/var/www/html
+      - ./php-config:/usr/local/etc/php/conf.d
+      - php_sessions:/var/lib/php/sessions
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
+    command: >
+      bash -c "mkdir -p /var/lib/php/sessions &&
+      chown www-data:www-data /var/lib/php/sessions &&
+      chmod 1733 /var/lib/php/sessions &&
+      sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list &&
+      sed -i 's/security.debian.org/archive.debian.org/g' /etc/apt/sources.list &&
+      sed -i '/stretch-updates/d' /etc/apt/sources.list &&
+      apt-get update &&
+      apt-get install -y gettext &&
+      docker-php-ext-install mysqli gettext &&
+      apache2-foreground"
+
+  db:
+    image: mysql:5.7
+    container_name: openclinic-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: openclinic
+      MYSQL_USER: openclinic_user
+      MYSQL_PASSWORD: openclinic_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: openclinic-phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpass
+
+volumes:
+  db_data:
+  php_sessions:
