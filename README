@@ -1,18 +1,6 @@
 OpenClinic: Web Medical Records System
 ======================================
-
-Welcome to OpenClinic!
-
-First of all, thanks a lot to download this software, I hope that you can enjoy it.
-
-OpenClinic is free software, released under GNU GPL Licence version 2.0 (see LICENSE file for details)
-
-Introduction
-============
-
-OpenClinic is an easy to use, open source, medical records system written in PHP. It has been mainly thougth for private clinics, surgeries and private doctors. It is platform independent and it has multilanguage architecture.
-
-Currently OpenClinic has the following options:
+OpenClinic has the following options:
 
     * Medical Records
 
