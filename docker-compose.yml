@@ -1,10 +1,9 @@
 services:
   web:
-    image: php:5.6-apache
+    build: .
     container_name: openclinic-web
     volumes:
       - ./:/var/www/html
-      - ./php-config:/usr/local/etc/php/conf.d
       - php_sessions:/var/lib/php/sessions
     ports:
       - "8080:80"
@@ -13,18 +12,6 @@ services:
     environment:
       - APACHE_RUN_USER=www-data
       - APACHE_RUN_GROUP=www-data
-    command: >
-      bash -c "mkdir -p /var/lib/php/sessions &&
-      chown www-data:www-data /var/lib/php/sessions &&
-      chmod 1733 /var/lib/php/sessions &&
-      sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list &&
-      sed -i 's/security.debian.org/archive.debian.org/g' /etc/apt/sources.list &&
-      sed -i '/stretch-updates/d' /etc/apt/sources.list &&
-      echo 'Acquire::Check-Valid-Until \"false\";' > /etc/apt/apt.conf.d/99no-check-valid-until &&
-      apt-get update &&
-      apt-get install -y --allow-unauthenticated gettext &&
-      docker-php-ext-install mysqli gettext &&
-      apache2-foreground"
 
   db:
     image: mysql:5.7
