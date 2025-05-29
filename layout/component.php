@@ -119,26 +119,7 @@
         _("Powered by OpenClinic"),
         array('width' => 130, 'height' => 29)
       ),
-      'http://openclinic.sourceforge.net'
-    );
-
-    $thankCoresis = HTML::image('../img/thank.png', 'OpenClinic Logo thanks to Coresis',
-      array('width' => 65, 'height' => 30)
-    );
-    $thankCoresis .= HTML::image('../img/coresis.png', 'OpenClinic Logo thanks to Coresis',
-      array('width' => 65, 'height' => 30)
-    );
-    $thankCoresis = str_replace(PHP_EOL, '', $thankCoresis);
-    $_links[] = HTML::link($thankCoresis, 'http://www.coresis.com');
-    unset($thankCoresis);
-
-    $_links[] = HTML::link(
-      HTML::image(
-        '../img/sf-logo.png',
-        'Project hosted in SourceForge.net',
-        array('width' => 130, 'height' => 37)
-      ),
-      'http://sourceforge.net'
+      'http://localhost:8080/home/index.php'
     );
 
     return HTML::itemList($_links, array('id' => 'logos'));
@@ -153,33 +134,6 @@
   function miniLogos()
   {
     $_links = null;
-
-    $_links[] = HTML::link(
-      HTML::image(
-        '../img/php-logo.gif',
-        'Powered by PHP',
-        array('width' => 80, 'height' => 15)
-      ),
-      'http://www.php.net'
-    );
-
-    $_links[] = HTML::link(
-      HTML::image(
-        '../img/mysql-logo.png',
-        'Works with MySQL',
-        array('width' => 80, 'height' => 15)
-      ),
-      'http://www.mysql.com'
-    );
-
-    $_links[] = HTML::link(
-      HTML::image(
-        '../img/valid-xhtml11.png',
-        'Valid XHTML 1.1',
-        array('width' => 80, 'height' => 15)
-      ),
-      'http://validator.w3.org/check/referer'
-    );
 
     $_links[] = HTML::link(
       HTML::image(
@@ -244,13 +198,9 @@
   function sfLinks()
   {
     $_sfLinks = array(
-      _("Project Page") => 'http://sourceforge.net/projects/openclinic/',
-      //_("Mailing Lists") => 'http://sourceforge.net/mail/?group_id=70742',
-      _("Downloads") => 'http://sourceforge.net/project/showfiles.php?group_id=70742',
-      _("Report Bugs") => 'http://sourceforge.net/tracker/?group_id=70742&atid=528857',
-      //_("Tasks") => 'http://sourceforge.net/pm/?group_id=70742',
-      _("Forums") => 'http://sourceforge.net/forum/?group_id=70742',
-      //_("Developers"), 'http://sourceforge.net/project/memberlist.php?group_id=70742'
+      _("Home") => 'http://localhost:8080/home/index.php',
+      _("Medical Records") => 'http://localhost:8080/medical/index.php',
+      _("Admin") => 'http://localhost:8080/admin/index.php',
     );
 
     $_array = null;

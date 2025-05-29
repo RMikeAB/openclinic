@@ -43,27 +43,6 @@
 
   echo HTML::start('div', array('id' => 'app_info'));
 
-  $text = HTML::link(_("Powered by OpenClinic"), 'http://openclinic.sourceforge.net/');
-  if (defined("OPEN_VERSION"))
-  {
-    $text .= ' ' . _("version") . ' ' . OPEN_VERSION;
-  }
-  echo HTML::para($text);
-
-  echo HTML::para(
-    sprintf('Copyright &copy; 2002-%d %s',
-      date("Y"),
-      HTML::link('Jose Antonio Chavarr&iacute;a', 'mailto:CUT-THIS.openclinic&#64;gmail.com', null,
-        array('accesskey' => 9)
-      )
-    )
-  );
-
-  echo HTML::para(
-    sprintf(_("Under the %s"),
-      HTML::link('GNU General Public License', '../home/license.php', null, array('rel' => 'license'))
-    )
-  );
 
   if (defined("OPEN_DEMO") && OPEN_DEMO)
   {
